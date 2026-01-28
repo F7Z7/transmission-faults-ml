@@ -1,6 +1,6 @@
 import os
 
-Base_Path = "C:\\Users\\farza\\transmission-faults-ml\\Datasets"
+Base_Path = "/Datasets"
 
 voltage_dir = os.path.join(Base_Path, "Voltage")
 current_dir = os.path.join(Base_Path, "Current")
