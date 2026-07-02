@@ -42,16 +42,32 @@ anomalies = mse > threshold
 print("Total samples:", len(mse))
 print("Anomalies detected:", anomalies.sum())
 
-anomaly_indices = np.where(anomalies)[0]
-print("First anomaly indices:", anomaly_indices[:20])
+
+anomaly_idx = np.where(anomalies)[0]
+print("First anomaly indices:", anomaly_idx[:20])
+
+global_anomaly_idx = anomaly_idx + split
 
 
-plt.figure(figsize=(12,5))
+print("Global anomalies:")
+print(global_anomaly_idx[:20])
+
+
+#save datas
+np.save("../datas/mse.npy", mse)
+np.save("../datas/threshold.npy", threshold)
+np.save("../datas/anomalies.npy", anomalies)
+np.save("../datas/global_anomaly_indices.npy",global_anomaly_idx)
+
+
+plt.figure(figsize=(15,5))
 plt.plot(mse)
-plt.axhline(y=threshold, color='r')
+plt.scatter(anomaly_idx, mse[anomaly_idx], color='red')
+plt.axhline(threshold, color='green')
 plt.xlabel("Sample")
 plt.ylabel("Reconstruction Error")
 plt.title("Autoencoder Anomaly Detection")
 plt.show()
 print("Total test samples:", len(X_test))
 print("Detected faults:", np.sum(anomalies))
+
