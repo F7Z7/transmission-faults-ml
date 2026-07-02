@@ -53,12 +53,12 @@ print("Global anomalies:")
 print(global_anomaly_idx[:20])
 
 
-#save datas
-np.save("../datas/mse.npy", mse)
-np.save("../datas/threshold.npy", threshold)
-np.save("../datas/anomalies.npy", anomalies)
-np.save("../datas/global_anomaly_indices.npy",global_anomaly_idx)
-
+# #save datas
+# np.save("../datas/mse.npy", mse)
+# np.save("../datas/threshold.npy", threshold)
+# np.save("../datas/anomalies.npy", anomalies)
+# np.save("../datas/global_anomaly_indices.npy",global_anomaly_idx)
+#
 
 plt.figure(figsize=(15,5))
 plt.plot(mse)
@@ -71,3 +71,4 @@ plt.show()
 print("Total test samples:", len(X_test))
 print("Detected faults:", np.sum(anomalies))
 
+model.save("../models/pmu_autoencoder.keras")
